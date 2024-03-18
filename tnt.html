@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Combined Page</title>
+    <style>
+        /* Common styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-size: cover;
+            background-position: center;
+        }
+        .header {
+            background-color: rgba(51, 51, 51, 0.7);
+            color: #fff;
+            padding: 20px;
+            position: relative;
+        }
+        .logo {
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
+        .header h1 {
+            margin-left: 120px;
+        }
+        .content {
+            max-width: 400px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        input[type="text"],
+        input[type="password"],
+        button {
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #333;
+            color: #fff;
+            cursor: pointer;
+        }
+        .signup-link {
+            text-align: center;
+            margin-top: 10px;
+        }
+        .footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+        }
+
+        /* Styles for light mode */
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: #337171b0;
+        }
+        .clue,
+        .person {
+            margin-bottom: 20px;
+        }
+        .clue label,
+        .person label {
+            display: block;
+            font-weight: bold;
+        }
+        .clue input[type="text"],
+        .clue textarea,
+        .person input[type="text"],
+        .person textarea {
+            width: calc(100% - 10px);
+            margin-bottom: 10px;
+            padding: 8px;
+            border: 1px solid #a44646;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        .clue input[type="date"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #864141;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        .add-clue-btn,
+        .add-person-btn {
+            background-color: #4CAF50;
+            color: rgb(68, 35, 35);
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Dark mode styles */
+        .dark-mode {
+            background-color: #1f1f1f;
+            color: #8b2828;
+        }
+        .dark-mode .header {
+            background-color: rgba(51, 51, 51, 0.7);
+            color: #401616;
+        }
+        .dark-mode .content {
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #fff;
+        }
+        .dark-mode input[type="text"],
+        .dark-mode input[type="password"],
+        .dark-mode button {
+            border: 1px solid #fff;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <!-- Dark mode toggle button -->
+    <button onclick="toggleDarkMode()">Toggle Dark Mode</button>
+
+    <!-- Login Page -->
+    <div id="loginPage">
+        <div class="header">
+            <img src="dev or die logo.webp" alt="Logo" class="logo">
+            <h1>Login Page</h1>
+        </div>
+        <div class="content">
+            <form id="loginForm" onsubmit="login(event)">
+                <input type="text" id="username" name="vipul" placeholder="Username" required>
+                <input type="password" id="password" name="123" placeholder="Password" required>
+                <button type="submit">Login</button>
+            </form>
+            <div class="signup-link">
+                Don't have an account? <a href="signup.html">Sign up</a>
+            </div>
+        </div>
+        <div class="footer">
+            Contact us: vipul9456tiwari@gmail.com | Phone: +919140252706
+        </div>
+    </div>
+
+    <!-- Clue Organizer Page -->
+    <div id="clueOrganizer" style="display: none;">
+        <div class="container">
+            <h1>Clue Organizer</h1>
+            <div class="clue">
+                <label for="category">Category:</label>
+                <input type="text" id="category" name="category" placeholder="Enter category">
+                <label for="date-discovered">Date Discovered:</label>
+                <input type="date" id="date-discovered" name="date-discovered">
+                <label for="description">Description:</label>
+                <textarea name="description" id="description" placeholder="Enter description"></textarea>
+            </div>
+            <button class="add-clue-btn" onclick="addClue()">Add Clue</button>
+        </div>
+    </div>
+
+    <!-- People Tracker Page -->
+    <div id="peopleTracker" style="display: none;">
+        <div class="container">
+            <h1>People Tracker</h1>
+            <div>
+                <label for="searchName">Search by Name:</label>
+                <input type="text" id="searchName" placeholder="Enter name">
+                <button onclick="searchPeople()">Search</button>
+            </div>
+            <div class="person">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" placeholder="Enter name">
+                <label for="profession">Profession:</label>
+                <input type="text" id="profession" name="profession" placeholder="Enter profession">
+                <label for="details">Details:</label>
+                <textarea name="details" id="details" placeholder="Enter details"></textarea>
+            </div>
+            <button class="add-person-btn" onclick="addPerson()">Add Person</button>
+        </div>
+    </div>
+
+    <script>
+        // Function to handle login
+        function login(event) {
+            event.preventDefault(); // Prevent form submission
+            // Here, you would typically perform an AJAX request to verify credentials
+            // For demonstration purposes, let's assume the login is successful
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            if (username === 'vipul' && password === '2005') {
+                // Hide login page and show clue organizer page
+                document.getElementById('loginPage').style.display = 'none';
+                document.getElementById('clueOrganizer').style.display = 'block';
+            } else {
+                alert('Invalid username or password');
+            }
+        }
+
+        // Function to add a new clue
+        function addClue() {
+            const container = document.querySelector('.container');
+            const clueCount = container.querySelectorAll('.clue').length + 1;
+
+            const newClueDiv = document.createElement('div');
+            newClueDiv.classList.add('clue');
+
+            const categoryLabel = document.createElement('label');
+            categoryLabel.textContent = 'Category:';
+            categoryLabel.setAttribute('for', `category${clueCount}`);
+
+            const categoryInput = document.createElement('input');
+            categoryInput.setAttribute('type', 'text');
+            categoryInput.setAttribute('id', `category${clueCount}`);
+            categoryInput.setAttribute('name', `category${clueCount}`);
+            categoryInput.setAttribute('placeholder', 'Enter category');
+
+            const dateLabel = document.createElement('label');
+            dateLabel.textContent = 'Date Discovered:';
+            dateLabel.setAttribute('for', `date-discovered${clueCount}`);
+
+            const dateInput = document.createElement('input');
+            dateInput.setAttribute('type', 'date');
+            dateInput.setAttribute('id', `date-discovered${clueCount}`);
+            dateInput.setAttribute('name', `date-discovered${clueCount}`);
+
+            const descriptionLabel = document.createElement('label');
+            descriptionLabel.textContent = 'Description:';
+            descriptionLabel.setAttribute('for', `description${clueCount}`);
+
+            const descriptionTextarea = document.createElement('textarea');
+            descriptionTextarea.setAttribute('name', `description${clueCount}`);
+            descriptionTextarea.setAttribute('id', `description${clueCount}`);
+            descriptionTextarea.setAttribute('placeholder', 'Enter description');
+
+            newClueDiv.appendChild(categoryLabel);
+            newClueDiv.appendChild(categoryInput);
+            newClueDiv.appendChild(dateLabel);
+            newClueDiv.appendChild(dateInput);
+            newClueDiv.appendChild(descriptionLabel);
+            newClueDiv.appendChild(descriptionTextarea);
+
+            container.insertBefore(newClueDiv, document.querySelector('.add-clue-btn'));
+        }
+
+        // Function to add a new person
+        function addPerson() {
+            const container = document.querySelector('.container');
+            const personCount = container.querySelectorAll('.person').length + 1;
+
+            const newPersonDiv = document.createElement('div');
+            newPersonDiv.classList.add('person');
+
+            const nameLabel = document.createElement('label');
+            nameLabel.textContent = 'Name:';
+            nameLabel.setAttribute('for', `name${personCount}`);
+
+            const nameInput = document.createElement('input');
+            nameInput.setAttribute('type', 'text');
+            nameInput.setAttribute('id', `name${personCount}`);
+            nameInput.setAttribute('name', `name${personCount}`);
+            nameInput.setAttribute('placeholder', 'Enter name');
+
+            const professionLabel = document.createElement('label');
+            professionLabel.textContent = 'Profession:';
+            professionLabel.setAttribute('for', `profession${personCount}`);
+
+            const professionInput = document.createElement('input');
+            professionInput.setAttribute('type', 'text');
+            professionInput.setAttribute('id', `profession${personCount}`);
+            professionInput.setAttribute('name', `profession${personCount}`);
+            professionInput.setAttribute('placeholder', 'Enter profession');
+
+            const detailsLabel = document.createElement('label');
+            detailsLabel.textContent = 'Details:';
+            detailsLabel.setAttribute('for', `details${personCount}`);
+
+            const detailsTextarea = document.createElement('textarea');
+            detailsTextarea.setAttribute('name', `details${personCount}`);
+            detailsTextarea.setAttribute('id', `details${personCount}`);
+            detailsTextarea.setAttribute('placeholder', 'Enter details');
+
+            newPersonDiv.appendChild(nameLabel);
+            newPersonDiv.appendChild(nameInput);
+            newPersonDiv.appendChild(professionLabel);
+            newPersonDiv.appendChild(professionInput);
+            newPersonDiv.appendChild(detailsLabel);
+            newPersonDiv.appendChild(detailsTextarea);
+
+            container.insertBefore(newPersonDiv, document.querySelector('.add-person-btn'));
+        }
+
+        // Function to toggle dark mode
+        function toggleDarkMode() {
+            const body = document.body;
+            body.classList.toggle('dark-mode');
+        }
+    </script>
+</body>
+</html>

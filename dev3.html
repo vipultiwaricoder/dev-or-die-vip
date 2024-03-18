@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>People Tracker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #dc7c7c;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: #274a94;
+        }
+        h1 {
+            text-align: center;
+        }
+        .person {
+            margin-bottom: 20px;
+        }
+        .person label {
+            display: block;
+            font-weight: bold;
+        }
+        .person input[type="text"],
+        .person textarea {
+            width: calc(100% - 10px);
+            margin-bottom: 10px;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        .add-person-btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>People Tracker</h1>
+        <div class="person">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" placeholder="Enter name">
+            <label for="profession">Profession:</label>
+            <input type="text" id="profession" name="profession" placeholder="Enter profession">
+            <label for="details">Details:</label>
+            <textarea name="details" id="details" placeholder="Enter details"></textarea>
+        </div>
+        <!-- Add more people dynamically using JavaScript -->
+        <button class="add-person-btn" onclick="addPerson()">Add Person</button>
+    </div>
+
+    <script>
+        function addPerson() {
+            const container = document.querySelector('.container');
+            const personCount = container.querySelectorAll('.person').length + 1;
+
+            const newPersonDiv = document.createElement('div');
+            newPersonDiv.classList.add('person');
+
+            const nameLabel = document.createElement('label');
+            nameLabel.textContent = 'Name:';
+            nameLabel.setAttribute('for', `name${personCount}`);
+
+            const nameInput = document.createElement('input');
+            nameInput.setAttribute('type', 'text');
+            nameInput.setAttribute('id', `name${personCount}`);
+            nameInput.setAttribute('name', `name${personCount}`);
+            nameInput.setAttribute('placeholder', 'Enter name');
+
+            const professionLabel = document.createElement('label');
+            professionLabel.textContent = 'Profession:';
+            professionLabel.setAttribute('for', `profession${personCount}`);
+
+            const professionInput = document.createElement('input');
+            professionInput.setAttribute('type', 'text');
+            professionInput.setAttribute('id', `profession${personCount}`);
+            professionInput.setAttribute('name', `profession${personCount}`);
+            professionInput.setAttribute('placeholder', 'Enter profession');
+
+            const detailsLabel = document.createElement('label');
+            detailsLabel.textContent = 'Details:';
+            detailsLabel.setAttribute('for', `details${personCount}`);
+
+            const detailsTextarea = document.createElement('textarea');
+            detailsTextarea.setAttribute('name', `details${personCount}`);
+            detailsTextarea.setAttribute('id', `details${personCount}`);
+            detailsTextarea.setAttribute('placeholder', 'Enter details');
+
+            newPersonDiv.appendChild(nameLabel);
+            newPersonDiv.appendChild(nameInput);
+            newPersonDiv.appendChild(professionLabel);
+            newPersonDiv.appendChild(professionInput);
+            newPersonDiv.appendChild(detailsLabel);
+            newPersonDiv.appendChild(detailsTextarea);
+
+            container.insertBefore(newPersonDiv, document.querySelector('.add-person-btn'));
+        }
+    </script>
+</body>
+</html>

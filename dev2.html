@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clue Organizer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #130118;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: #f9fafab0;
+        }
+        h1 {
+            text-align: center;
+        }
+        .clue {
+            margin-bottom: 20px;
+        }
+        .clue label {
+            display: block;
+            font-weight: bold;
+        }
+        .clue input[type="text"],
+        .clue textarea {
+            width: calc(100% - 10px);
+            margin-bottom: 10px;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        .clue input[type="date"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        .add-clue-btn {
+            background-color: #4CAF50;
+            color: pink;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Clue Organizer</h1>
+        <div class="clue">
+            <label for="category">Category:</label>
+            <input type="text" id="category" name="category" placeholder="Enter category">
+            <label for="date-discovered">Date Discovered:</label>
+            <input type="date" id="date-discovered" name="date-discovered">
+            <label for="description">Description:</label>
+            <textarea name="description" id="description" placeholder="Enter description"></textarea>
+        </div>
+        <!-- Add more clues dynamically using JavaScript -->
+        <button class="add-clue-btn" onclick="addClue()">Add Clue</button>
+    </div>
+
+    <script>
+        function addClue() {
+            const container = document.querySelector('.container');
+            const clueCount = container.querySelectorAll('.clue').length + 1;
+
+            const newClueDiv = document.createElement('div');
+            newClueDiv.classList.add('clue');
+
+            const categoryLabel = document.createElement('label');
+            categoryLabel.textContent = 'Category:';
+            categoryLabel.setAttribute('for', `category${clueCount}`);
+
+            const categoryInput = document.createElement('input');
+            categoryInput.setAttribute('type', 'text');
+            categoryInput.setAttribute('id', `category${clueCount}`);
+            categoryInput.setAttribute('name', `category${clueCount}`);
+            categoryInput.setAttribute('placeholder', 'Enter category');
+
+            const dateLabel = document.createElement('label');
+            dateLabel.textContent = 'Date Discovered:';
+            dateLabel.setAttribute('for', `date-discovered${clueCount}`);
+
+            const dateInput = document.createElement('input');
+            dateInput.setAttribute('type', 'date');
+            dateInput.setAttribute('id', `date-discovered${clueCount}`);
+            dateInput.setAttribute('name', `date-discovered${clueCount}`);
+
+            const descriptionLabel = document.createElement('label');
+            descriptionLabel.textContent = 'Description:';
+            descriptionLabel.setAttribute('for', `description${clueCount}`);
+
+            const descriptionTextarea = document.createElement('textarea');
+            descriptionTextarea.setAttribute('name', `description${clueCount}`);
+            descriptionTextarea.setAttribute('id', `description${clueCount}`);
+            descriptionTextarea.setAttribute('placeholder', 'Enter description');
+
+            newClueDiv.appendChild(categoryLabel);
+            newClueDiv.appendChild(categoryInput);
+            newClueDiv.appendChild(dateLabel);
+            newClueDiv.appendChild(dateInput);
+            newClueDiv.appendChild(descriptionLabel);
+            newClueDiv.appendChild(descriptionTextarea);
+
+            container.insertBefore(newClueDiv, document.querySelector('.add-clue-btn'));
+        }
+    </script>
+</body>
+</html>
